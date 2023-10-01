@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/logo (1).png">
+  <title>UFab</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500i,700" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <style>
+    @media screen {
+
+      *,
+      :after,
+      :before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 10px;
+        background-color: rgb(237, 237, 237);
+        border-radius: 30px;
+        box-shadow: 0px 25px 40px #3d3d3d;
+        font-family: system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      a,
+      ul {
+        font-family: "Raleway", sans-serif;
+        color: #000;
+      }
+
+      .site-container {
+        max-width: 1700px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      nav {
+        position: fixed;
+        width: 95%;
+        z-index: 2;
+      }
+
+      nav ul {
+        list-style: none;
+        text-align: center;
+        width: max-content;
+        background-color: rgba(255, 255, 255, 0.471);
+        margin: 0;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px auto;
+      }
+
+      nav ul li {
+        display: inline-block;
+        margin-right: 60px;
+        position: relative;
+        top: -100px;
+      }
+
+      nav ul li:last-child {
+        margin-right: 0;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero__item {
+        padding-left: 80px;
+      }
+
+      .hero__item:last-child {
+        padding-left: 0;
+        padding-right: 180px;
+      }
+
+      .hero__item .title {
+        position: relative;
+      }
+
+      .hero__item h1 {
+        font-size: 80px;
+        position: relative;
+      }
+
+      .hero__item img {
+        z-index: 1;
+        position: relative;
+        opacity: 0;
+        right: -1000px;
+      }
+
+      .mob {
+        display: none;
+      }
+
+      .boxes {
+        position: relative;
+      }
+
+      .boxes__box {
+        min-width: 120px;
+        min-height: 120px;
+        background-color: rgb(255, 191, 0);
+        position: absolute;
+        top: -70px;
+        left: -20px;
+      }
+
+      .boxes__box:first-child {
+        top: -210px;
+        left: 0;
+      }
+
+      .boxes__box:nth-child(2) {
+        background-color: rgb(228, 173, 70);
+        bottom: -50px;
+        left: -90px;
+        top: auto;
+        height: 240px;
+        width: 240px;
+      }
+
+      .boxes__box:nth-child(3) {
+        background-color: rgb(218, 142, 2);
+        top: -50px;
+        right: 40px;
+        left: auto;
+        height: 200px;
+        width: 200px;
+      }
+
+      .boxes__box:nth-child(4) {
+        background-color: orange;
+        top: -30px;
+        left: -120px;
+        height: 220px;
+        width: 220px;
+      }
+
+      .boxes__box:nth-child(5) {
+        background-color: orange;
+        right: -50px;
+        top: auto;
+        left: auto;
+        bottom: -40px;
+        height: 170px;
+        width: 170px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 3%;
+        border-radius: 20px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+      }
+
+      footer p {
+        color: white;
+        font-size: 19px;
+      }
+
+      footer a {
+        margin: 0 5px;
+        cursor: pointer;
+        color: #f5f5f5;
+        fill: white;
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        border: 1px solid #969696;
+        width: 50%;
+        min-width: 350px;
+        margin: 0 auto;
+        padding: 5px 20px;
+        border-radius: 50px;
+        align-items: center;
+      }
+
+      .search-bar input[type="text"] {
+        flex: 1;
+        border: none;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0);
+      }
+
+      #search-button {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .product-box {
+        display: flex;
+        width: max-content;
+        align-items: center;
+        background-color: #fafafa;
+        border-radius: 20px;
+        margin: 1em;
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15), -7px -7px 20px rgba(255, 255, 255, 1), inset 0px 0px 4px rgba(255, 255, 255, 0.2), inset 7px 7px 15px rgba(55, 84, 170, 0), inset -7px -7px 20px rgba(255, 255, 255, 0), 0px 0px 4px rgba(255, 255, 255, 0);
+      }
+
+      .product-img {
+        border-radius: 20px;
+        height: 190px;
+      }
+
+      .product-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 20px;
+        padding: 1em;
+      }
+
+      .product-name {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .product-price {
+        font-size: 1em;
+        margin-top: 0.5em;
+      }
+
+      #size-select {
+        border: none;
+        background: none;
+      }
+
+      #add-to-cart {
+        width: max-content;
+        background-color: #f44336;
+        color: #ffffff;
+        border: none;
+        border-radius: 100px;
+        font-size: 1em;
+        padding-bottom: 0.3em;
+        padding-top: 0.3em;
+        padding-left: 0.7em;
+        padding-right: 0.7em;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+
+      #add-to-cart:hover {
+        background-color: #ffffff;
+        color: #f44336;
+        border: 1px solid #f44336;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.567);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .wrapper {
+        margin: 70px auto;
+        padding: 20px;
+        background: #0f0f0f;
+        border-radius: 30px;
+        width: 25%;
+        min-width: 350px;
+        color: white;
+        position: relative;
+        transition: all 5s ease-in-out;
+      }
+
+      .wrapper .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+      }
+
+      .wrapper .close:hover {
+        color: #f80202;
+      }
+
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0px;
+        padding: 10px 0px;
+        border-top: 1px solid #333;
+      }
+
+      .cart-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .clr-cart {
+        background-color: #f44336;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+
+      .clr-cart:hover {
+        background-color: #ac3129;
+      }
+
+      #checkout {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        width: min-content;
+      }
+
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 30px;
+        margin-top: 28px;
+        background-color: #ffffff83;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 20px;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    }
+
+    @media (max-width:1075px) {
+      .boxes {
+        display: none;
+      }
+    }
+
+    @media (max-width:505px) {
+
+      .hero__item {
+        margin: 0 auto;
+        padding-left: 10px;
+        display: block;
+      }
+
+      .gayab {
+        display: none;
+      }
+
+      .desk {
+        display: none;
+      }
+
+      .mob {
+        display: block;
+      }
+
+      .nav {
+        margin-left: 70%;
+      }
+
+      .product-box {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        align-items: center;
+        background-color: #fafafa;
+        border-radius: 20px;
+        margin: 1em;
+        box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15), -7px -7px 20px rgba(255, 255, 255, 1), inset 0px 0px 4px rgba(255, 255, 255, 0.2), inset 7px 7px 15px rgba(55, 84, 170, 0), inset -7px -7px 20px rgba(255, 255, 255, 0), 0px 0px 4px rgba(255, 255, 255, 0);
+      }
+
+      .product-img {
+        border-radius: 20px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <nav>
+    <div class="invi-nav"></div>
+    <ul class="nav">
+      <li class="nav__item desk"><a href="#contact-us">Contact us</a></li>
+      <li class="nav__item desk"><a href="#products">Products</a></li>
+      <li class="nav__item desk"><a href="mailto:jatinjha83@gmail.com">Print on Demand</a></li>
+      <div class="dropdown">
+        <li class="nav__item mob"><a>Menu▾</a></li>
+
+        <div class="dropdown-content">
+          <a href="#products">Products</a>
+          <a href="#contact-us">Contact us</a>
+          <a href="mailto:jatinjha83@gmail.com">Print on Demand</a>
+        </div>
+      </div>
+    </ul>
+  </nav>
+  <div class="hero">
+
+    <div class="hero__item">
+      <h1 class="title">UFab <br>You are Fabulous</h1>
+    </div>
+    <div class="hero__item gayab">
+
+      <div class="boxes">
+        <div><img style="height: 600px;" src="assets/model0.1.png" alt=""></div>
+        <div class="boxes__box"></div>
+        <div class="boxes__box"></div>
+        <div class="boxes__box"></div>
+        <div class="boxes__box"></div>
+        <div class="boxes__box"></div>
+        <div class="boxes__box"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="search-bar" id="products">
+    <button type="button" id="search-button">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" viewBox="0 0 50 50">
+        <path
+          d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z">
+        </path>
+      </svg>
+    </button>
+    <input type="text" placeholder="Search for products, brands and more" name="desk-search" id="search-input">
+    <a href="#divOne">
+      <svg fill="#000000" width="25" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+        xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <g>
+            <g>
+              <path
+                d="m464.5,301.1l36.5-178h-359.7l-12.5-59.2-108.4-52.9-9.4,18.7 99,47.8 50,238.8h289c0,0 28.5,17.9 17.5,40.5-4.9,7-12.5,15.6-26.1,15.6h-287.6v20.6h287.7c19.8,0 36.5-10.4 45.9-27 18.4-34.4-21.9-64.9-21.9-64.9zm-286.7-5.7l-32.3-151.6h330.5l-31.3,151.6h-266.9z">
+              </path>
+              <path
+                d="m212.2,422.1c-21.9,0-39.6,17.6-39.6,39.4s17.7,39.4 39.6,39.4 39.6-17.6 39.6-39.4-17.7-39.4-39.6-39.4zm0,58.1c-10.4,0-18.8-8.3-18.8-18.7s8.3-18.7 18.8-18.7 18.8,8.3 18.8,18.7-8.4,18.7-18.8,18.7z">
+              </path>
+              <path
+                d="m424.9,422.1c-21.9,0-39.6,17.6-39.6,39.4s17.7,39.5 39.6,39.5 40.7-17.6 39.6-39.4c0-21.8-17.7-39.5-39.6-39.5zm18.8,39.5c0,10.4-8.3,18.7-18.8,18.7s-18.8-8.3-18.8-18.7 8.3-18.7 18.8-18.7 19.8,8.3 18.8,18.7z">
+              </path>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="product-container">
+    <div class="product-box">
+      <img class="product-img" src="https://m.media-amazon.com/images/I/71H2EmHXuaL._AC_UY1100_.jpg">
+      <div class="product-description">
+        <div class="product-name">Money</div>
+        <div class="product-price">&#8377; 300/-</div>
+        <label for="size-select">Select Size:<select id="size-select">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select></label>
+        <button id="add-to-cart">Add to cart</button>
+      </div>
+    </div>
+    <div class="product-box">
+      <img class="product-img" src="https://m.media-amazon.com/images/I/51PCLwOAYsL._AC_UY1100_.jpg">
+      <div class="product-description">
+        <div class="product-name"><a style="text-decoration: none; color: black;">Green</a>
+        </div>
+        <div class="product-price">&#8377; 300/-</div>
+        <label for="size-select">Select Size:<select id="size-select">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select></label>
+        <button id="add-to-cart">Add to cart</button>
+      </div>
+    </div>
+    <div class="product-box">
+      <img class="product-img" src="https://m.media-amazon.com/images/I/61b5L9WATpL._AC_UY1100_.jpg">
+      <div class="product-description">
+        <div class="product-name">Funky</div>
+        <div class="product-price">&#8377; 500/-</div>
+        <label for="size-select">Select Size:
+          <select id="size-select">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </label>
+        <button id="add-to-cart">Add to cart</button>
+      </div>
+    </div>
+    <div class="product-box">
+      <img class="product-img"
+        src="https://cdn.shopify.com/s/files/1/0671/0621/products/navy_ccd76939-8a88-4beb-9ebb-59b61cdfa798_1200x.jpg?v=1640852403">
+      <div class="product-description">
+        <div class="product-name"><a style="text-decoration: none; color: black;">Grey Hoodie</a>
+        </div>
+        <div class="product-price">&#8377; 300/-</div>
+        <label for="size-select">Select Size:<select id="size-select">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select></label>
+        <button id="add-to-cart">Add to cart</button>
+      </div>
+    </div>
+    <div class="product-box">
+      <img class="product-img"
+        src="https://cdn.shopify.com/s/files/1/0566/4299/4354/collections/blakely_womens_overall_cat_banner_989b576d80_858e5674-a6f9-4008-b0c4-bbff8d92ec5e.jpg?v=1677497224">
+      <div class="product-description">
+        <div class="product-name">Blake</div>
+        <div class="product-price">&#8377; 500/-</div>
+        <label for="size-select">Select Size:<select id="size-select">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select></label>
+        <button id="add-to-cart">Add to cart</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>New Delhi, India | Email: info@ufab.stealthera.in<br>Copyright &#169 2023 U-Fabric</p>
+    <a>
+      <svg stroke="white" fill="white" stroke-width="0" viewBox="0 0 512 512" width="25"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+        </path>
+      </svg></a>
+    <a>
+      <svg stroke="white" fill="white" stroke-width="0" viewBox="0 0 448 512" width="25"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z">
+        </path>
+      </svg>
+    </a>
+    <a>
+      <svg stroke="white" fill="white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="29"
+        viewBox="0 0 50 50">
+        <path
+          d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z">
+        </path>
+      </svg>
+    </a>
+    <p><a style="color: white; text-decoration: none;" href="terms&conditions.html">Terms & Conditions</a></p>
+  </footer>
+
+  <style>
+    form input {
+      margin: 20px 0;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.461);
+      font-size: 16px;
+    }
+
+    form input:focus {
+      outline: none;
+    }
+
+    form textarea {
+      border-radius: 20px;
+      padding: 10px;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.461);
+      font-size: 16px;
+    }
+
+    form textarea {
+      outline: none;
+    }
+  </style>
+
+  <div class="overlay" id="contact-us">
+    <div
+      style="border-radius: 30px; background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.616) 0, rgba(0, 0, 0, 0.76) 100%), url(assets/map.gif); background-size: cover; background-position: center; background-repeat: no-repeat;"
+      class="wrapper">
+      <h2 style="color: white;">Contact us</h2><a class="close" href="#">&times;</a>
+      <form style="display: flex; flex-direction: column; width: 100%;" method="POST" action="https://script.google.com/macros/s/AKfycbzRFfL35ZT39B-KTsjw9XjaubPIGJVOM4YOWFTIa2o46M6FZKdiLHjuxoM_Ju7qCc2EvA/exec">
+        <input required class="contact-email" name="Email" type="email" placeholder="Email">
+        <textarea class="contact-message" placeholder="Type your message..." name="message" id="" cols="30"
+          rows="5"></textarea>
+        <input style="width: max-content; padding: 7px 15px; background-color: #4CAF50; margin-left: auto;"
+          class="contact-send" type="submit" value="Send">
+      </form>
+    </div>
+  </div>
+
+  <div class="overlay" id="divOne">
+    <div
+      style="border-radius: 30px; background-image: linear-gradient(to bottom, rgba(51, 51, 51, 0.616) 0, rgba(0, 0, 0, 0.76) 100%), url(https://wallpaperaccess.com/full/2825704.gif); background-size: cover; background-position: center; background-repeat: no-repeat;"
+      class="wrapper">
+      <h2 style="color: white;">Cart</h2><a class="close" href="#products">&times;</a>
+      <div id="cartitem">Your Cart is empty</div>
+      <div class="foot">
+        <h3 style="color: white;">Total</h3>
+        <h2 id="total" style="color: white;">&#8377; 0.00</h2>
+      </div>
+      <div class="cart-btn">
+        <button class="clr-cart">Clear</button>
+        <button id="checkout">Proceed</button>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js'></script>
+  <script>
+    window.addEventListener('load', function () {
+      init();
+    });
+
+    function init() {
+      let toolTimeline = new TimelineMax();
+      let duration = .9;
+      toolTimeline.from('h1', duration, {
+        opacity: 0,
+        // scale:10,
+        ease: Linear.easeIn
+      }, .8)
+      toolTimeline.staggerFrom('.boxes__box', duration, {
+        opacity: 0,
+        scale: 0,
+        ease: Back.easeInOut
+      }, .1, .2);
+
+      toolTimeline.to('.boxes img', duration, {
+        opacity: 1,
+        right: 0,
+        ease: Back.easeOut
+      }, .4);
+
+      toolTimeline.staggerTo('li', duration, {
+
+        top: 0,
+        ease: Back.easeOut
+      }, .1, .9);
+
+    };
+  </script>
+
+  <script>
+    const searchInput = document.querySelector('#search-input');
+    const productBoxes = document.querySelectorAll('.product-box');
+    const addToCartButtons = document.querySelectorAll('#add-to-cart');
+    const cartItemElement = document.querySelector('#cartitem');
+    const totalElement = document.querySelector('#total');
+    const cart = [];
+
+    searchInput.addEventListener('input', () => {
+      const searchText = searchInput.value.toLowerCase();
+      productBoxes.forEach((box) => {
+        const name = box.querySelector('.product-name').textContent.toLowerCase();
+        box.style.display = name.includes(searchText) ? 'flex' : 'none';
+      });
+    });
+
+    addToCartButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        const productName = document.querySelectorAll('.product-name')[index].textContent;
+        const productPrice = Number(document.querySelectorAll('.product-price')[index].textContent.replace(/\D/g, ''));
+        const productSize = document.querySelectorAll('#size-select')[index].value;
+        cart.push({ name: productName, price: productPrice, size: productSize });
+
+        let cartItemHtml = '';
+        cart.forEach((item, index) => {
+          cartItemHtml += `<div>${item.name} - ${item.size} - &#8377;${item.price}/- <button style="background-color: #232323; color: white; border: none; border-radius: 40px; margin: 5px; padding: 8px 16px; cursor: pointer;" class="remove" data-index="${index}">Remove</button></div>`;
+        });
+
+        const clearCartButton = document.querySelector('.clr-cart');
+        clearCartButton.addEventListener('click', () => {
+          cart.length = 0;
+          cartItemElement.innerHTML = 'Your Cart is empty';
+          totalElement.textContent = '₹ 0.00';
+        });
+        cartItemElement.innerHTML = cartItemHtml;
+
+        const total = cart.reduce((acc, item) => acc + item.price, 0);
+        totalElement.textContent = `₹ ${total.toFixed(2)}`;
+
+        const removeButtons = document.querySelectorAll('.remove');
+        removeButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const itemIndex = button.getAttribute('data-index');
+            cart.splice(itemIndex, 1);
+            cartItemElement.removeChild(button.parentNode);
+            const total = cart.reduce((acc, item) => acc + item.price, 0);
+            totalElement.textContent = `Rs. ${total.toFixed(2)}`;
+          });
+        });
+        alert(`${productName} - ${productSize} has been added to your cart!`);
+      });
+    });
+
+  </script>
+</body>
+
+</html>
